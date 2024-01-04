@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  font-family: var(--primary-font, "Arial, sans-serif");
+  background-color: var(--primary-bg-color);
+  color: var(--primary-text-color);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+:root {
+  /* Light Theme */
+  --primary-font: "Poppins", sans-serif;
+  --primary-bg-color: #ffffff;
+  --primary-text-color: #000000;
+  --secondary-color: #575757;
+  --btn-bg-color: #2196f3;
+  --cta-hover-color: #167bce;
+  --btn-bg-light: #eeeeee;
+
+  /* Dark Theme */
+  --dark-primary-bg-color: #222222;
+  --dark-primary-text-color: #ffffff;
+  --dark-secondary-color: #828282;
+  --dark-btn-bg-color: #1e88e5;
+  --dark-cta-hover-color: #0d5e8c;
+  --dark-btn-bg-light: #eeeeee;
+}
+
+.dark-theme {
+  --primary-bg-color: var(--dark-primary-bg-color);
+  --primary-text-color: var(--dark-primary-text-color);
+  --secondary-color: var(--dark-secondary-color);
+  --btn-bg-color: var(--dark-btn-bg-color);
+  --cta-hover-color: var(--dark-cta-hover-color);
+  --btn-bg-light: var(--dark-btn-bg-light);
+}
