@@ -1,6 +1,7 @@
 import { portofolioList } from "@data/portfolio.list";
 import { skillList } from "@data/skill.list";
 import { useEffect, useMemo, useState } from "react";
+import { Tooltip } from "react-tooltip";
 import ProfilePic from "src/assets/gael-massart.png";
 import { logoList } from "src/data/logo.list";
 import { me } from "src/data/me.info";
@@ -8,10 +9,12 @@ import "src/styles/home.css";
 import { stringCapitalize } from "src/utils/functions";
 
 const groupedSkills = skillList.reduce((acc, skill) => {
-  if (!acc[skill.category]) {
-    acc[skill.category] = [];
+  const category = skill.category;
+  if (!acc[category]) {
+    acc[category] = [];
   }
-  acc[skill.category].push(skill);
+  acc[category].push(skill);
+  acc[category].sort((a, b) => b.estimatedLevel - a.estimatedLevel);
   return acc;
 }, {} as { [key: string]: typeof skillList });
 
@@ -54,10 +57,15 @@ const Portfolio = () => {
           alt="theme icon"
           onClick={toggleTheme}
         />
-        <div className="hero-pic">
+        <div
+          className="hero-pic"
+          data-tooltip-id="profile_pic"
+          data-tooltip-content="That's me!👋"
+        >
           <div className="inner-circle"></div>
-          <img src={ProfilePic} alt="Mason Wilkes" />
+          <img src={ProfilePic} alt={me.name} />
         </div>
+        <Tooltip id="profile_pic" place="top" />
         <div className="hero-info">
           <h1>{me.name}</h1>
           <h2>{me.title}</h2>
@@ -76,16 +84,35 @@ const Portfolio = () => {
       </section>
       <section className="experience">
         {me.experiences?.map((exp) => (
-          <h2 key={exp.id}>
-            <b>{exp.number}</b> {" " + stringCapitalize(exp.unit)}
-            {exp.trophies?.map((t) => (
-              <span key={t.id} title={`${t.title} ${t.year}`}>
-                {t.emoji}
-              </span>
-            ))}
-            <br />
-            <span title={exp.location}>📍</span> {stringCapitalize(exp.company)}
-          </h2>
+          <>
+            <h2
+              key={exp.id}
+              data-tooltip-id={`exp_${exp.id}`}
+              data-tooltip-content={exp.description}
+            >
+              <b>{exp.number}</b> {" " + stringCapitalize(exp.unit)}
+              <br />
+              <a href={exp.url} target="_blank">
+                <span title={exp.location}>📍</span>
+                {stringCapitalize(exp.company)}
+              </a>
+              {exp.trophies && <br />}
+              {exp.trophies?.map((t) => (
+                <>
+                  <span
+                    className="trophies"
+                    key={t.id}
+                    data-tooltip-id={`trophy_${t.id}`}
+                    data-tooltip-content={`${t.title} ${t.year}`}
+                  >
+                    {t.emoji}
+                  </span>
+                  <Tooltip id={`trophy_${t.id}`} place="right" />
+                </>
+              ))}
+            </h2>
+            <Tooltip id={`exp_${exp.id}`} place="top" />
+          </>
         ))}
       </section>
       <section className="cta">
@@ -132,9 +159,20 @@ const Portfolio = () => {
               <h3>{stringCapitalize(category)}</h3>
               <article className="skill-container">
                 {skills.map((skill) => (
-                  <p key={skill.id}>
-                    {skill.emoji} {skill.name}
-                  </p>
+                  <>
+                    <p
+                      className="skill-item"
+                      key={skill.id}
+                      data-tooltip-id={`skill_${skill.id}`}
+                      data-tooltip-content={`First used in ${skill.firstUse}`}
+                    >
+                      {skill.emoji} {skill.name}{" "}
+                      <span className="skill-stars">
+                        {"⭐".repeat(skill.estimatedLevel)}
+                      </span>
+                    </p>
+                    <Tooltip id={`skill_${skill.id}`} place="top" />
+                  </>
                 ))}
               </article>
             </div>

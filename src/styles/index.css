@@ -2,6 +2,7 @@ body {
   margin: 0;
   font-family: var(--primary-font, "Arial, sans-serif");
   background-color: var(--primary-bg-color);
+  transition: background-color 0.3s ease;
   color: var(--primary-text-color);
 }
 
@@ -13,20 +14,29 @@ code {
 :root {
   /* Light Theme */
   --primary-font: "Poppins", sans-serif;
-  --primary-bg-color: #ffffff;
-  --primary-text-color: #000000;
+  --primary-bg-color: #fafafa;
+  --primary-text-color: #333333;
+  --secondary-font: "Inter", sans-serif;
   --secondary-color: #575757;
-  --btn-bg-color: #2196f3;
+  --btn-bg-color: #1a73e8;
   --cta-hover-color: #167bce;
-  --btn-bg-light: #eeeeee;
+  --nav-bg-color: #f0f0f0;
+  --btn-nav-bg-color: #f5f5f5;
+  --btn-nav-bg-selected-color: #e0e0e0;
+  --btn-text-color: #575757;
+  --btn-text-active-color: #333333;
 
   /* Dark Theme */
-  --dark-primary-bg-color: #222222;
-  --dark-primary-text-color: #ffffff;
+  --dark-primary-bg-color: #242424;
+  --dark-primary-text-color: #e8eaed;
   --dark-secondary-color: #828282;
-  --dark-btn-bg-color: #1e88e5;
-  --dark-cta-hover-color: #0d5e8c;
-  --dark-btn-bg-light: #eeeeee;
+  --dark-btn-bg-color: #42a5f5;
+  --dark-cta-hover-color: #2196f3;
+  --dark-nav-bg-color: #2c2f33;
+  --dark-btn-nav-bg-color: #25262b;
+  --dark-btn-nav-bg-selected-color: #323639;
+  --dark-btn-text-color: #9f9f9f;
+  --dark-btn-text-active-color: #e8eaed;
 }
 
 .dark-theme {
@@ -35,5 +45,9 @@ code {
   --secondary-color: var(--dark-secondary-color);
   --btn-bg-color: var(--dark-btn-bg-color);
   --cta-hover-color: var(--dark-cta-hover-color);
-  --btn-bg-light: var(--dark-btn-bg-light);
+  --nav-bg-color: var(--dark-nav-bg-color);
+  --btn-nav-bg-color: var(--dark-btn-nav-bg-color);
+  --btn-nav-bg-selected-color: var(--dark-btn-nav-bg-selected-color);
+  --btn-text-color: var(--dark-btn-text-color);
+  --btn-text-active-color: var(--dark-btn-text-active-color);
 }

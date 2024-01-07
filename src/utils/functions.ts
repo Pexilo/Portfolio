@@ -1,3 +1,7 @@
 export const stringCapitalize = (str: string): string => {
-  return str.toLowerCase().charAt(0).toUpperCase() + str.slice(1);
+  return str
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 };
