@@ -1,10 +1,11 @@
-import { portofolioList } from "@data/portfolio.list";
-import { skillList } from "@data/skill.list";
+import { logoList } from "@data/logo.data";
+import { me } from "@data/me.data";
+import { portofolioList } from "@data/portfolio.data";
+import { skillList } from "@data/skill.data";
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 import ProfilePic from "src/assets/gael-massart.png";
-import { logoList } from "src/data/logo.list";
-import { me } from "src/data/me.info";
 import "src/styles/home.css";
 import { stringCapitalize } from "src/utils/functions";
 
@@ -24,7 +25,7 @@ type LogoSources = {
   email: string;
   theme: string;
 };
-const Portfolio = () => {
+const Home = () => {
   const [activeTab, setActiveTab] = useState("portfolio");
   const [isDarkTheme, setIsDarkTheme] = useState(
     () => localStorage.getItem("isDark") === "true"
@@ -86,7 +87,7 @@ const Portfolio = () => {
         {me.experiences?.map((exp) => (
           <>
             <h2
-              key={exp.id}
+              key={`exp_${exp.id}`}
               data-tooltip-id={`exp_${exp.id}`}
               data-tooltip-content={exp.description}
             >
@@ -144,9 +145,9 @@ const Portfolio = () => {
         <section className="portfolio" id="portfolio">
           {portofolioList.map((project) => (
             <div key={project.id} className="wrapper project-wrapper">
-              <a href={project.link}>
+              <Link to={project.link}>
                 <img src={project.image} alt={project.name} />
-              </a>
+              </Link>
             </div>
           ))}
         </section>
@@ -186,4 +187,4 @@ const Portfolio = () => {
   );
 };
 
-export default Portfolio;
+export default Home;

@@ -1,0 +1,413 @@
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  transition: 0.5s;
+}
+
+.agostore-bg {
+  width: 100%;
+  height: 100vh;
+  font-family: "Inter", sans-serif !important;
+  background-size: cover;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.research button:focus {
+  outline: 1px solid rgb(66, 153, 225);
+  animation: fadeInOutline 0.1s ease-out forwards;
+}
+
+button:active,
+.card.stocks div:active {
+  transform: scale(0.99);
+}
+
+.card,
+.research .container {
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.card {
+  margin: 1.5rem 0 5rem 0;
+}
+
+.card .container {
+  margin-top: 2rem;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.083);
+  width: 69%;
+}
+
+.research .top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-family: "Kanit", sans-serif !important;
+  font-size: 2.5rem;
+  color: white;
+}
+
+.card .top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.5rem;
+  font-size: 1rem;
+  font-family: "Inter", sans-serif !important;
+  color: white;
+  background-color: var(--agostore-color);
+  border-radius: 0.75rem 0.75rem 0 0;
+}
+
+.research .top img,
+.research .top h1 {
+  cursor: pointer;
+}
+
+.research .top img {
+  width: 10rem;
+  margin-right: 1rem;
+}
+
+.research .middle {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  border-radius: 0.75rem;
+  background-color: rgb(229 231 235);
+  padding: 0.5rem 1rem 1rem 1rem;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.083);
+}
+
+.research .middle input {
+  font-size: 1rem;
+  line-height: 1.25rem;
+  font-family: inherit;
+  max-width: 12rem;
+  height: 1.5rem;
+  margin: 0px;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid transparent;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.research .middle input:focus {
+  outline: 1px solid rgb(66, 153, 225);
+  animation: fadeInOutline 0.5s ease-out forwards;
+}
+
+.research .middle button {
+  font-size: 1.1rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+  width: 15rem;
+  height: 2.7rem;
+  background-color: var(--agostore-color);
+  color: white;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  font-family: "Inter", sans-serif !important;
+  border: none;
+  outline: 2px solid transparent;
+  margin-top: 0.5rem;
+}
+
+.research .middle button:disabled {
+  background-color: rgb(229 231 235);
+  color: rgb(107 114 128);
+  cursor: not-allowed;
+}
+
+.card .middle {
+  display: flex;
+  font-family: "Inter", sans-serif !important;
+  border-radius: 0.75rem;
+  padding: 0.5rem 1rem 1rem 1rem;
+}
+
+.card .tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  margin-bottom: 0.5rem;
+  height: 20%;
+}
+
+.card .tags div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  margin: 0 0.5rem 0.5rem 0;
+  color: white;
+  font-weight: 600;
+}
+
+.card .left {
+  display: flex;
+  font-family: "Inter", sans-serif !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+
+.card .left img {
+  width: 10rem;
+  margin-bottom: 1rem;
+}
+
+.card .stocks {
+  display: flex;
+  flex-direction: column;
+  width: 110vh;
+  margin: 0.5rem 0 0.5rem 0;
+}
+
+.card .stocks img {
+  cursor: help;
+  width: 20px;
+  margin-left: 1rem;
+}
+
+.card .stocks div {
+  display: flex;
+  font-family: "Inter", sans-serif !important;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #e5e7eb;
+  padding: 1rem 0 1rem 0;
+  border-radius: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.card .stocks div span {
+  display: flex;
+}
+
+.card .stocks div span p {
+  margin-left: 1rem;
+  font-size: 1.1rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+}
+
+.card .stocks div span:first-child {
+  width: 40%;
+}
+
+.card .right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  margin-left: 1rem;
+}
+
+.card .right button {
+  font-size: 1.1rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  width: 12rem;
+  height: 2.7rem;
+  background-color: var(--agostore-color);
+  color: white;
+  cursor: pointer;
+  border-radius: 0.75rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  outline: 2px solid transparent;
+  margin-top: 0.5rem;
+  font-family: "Inter", sans-serif !important;
+}
+
+.card .edit {
+  background-color: #9ca3af !important;
+}
+
+.card .bottom {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  bottom: 0.5rem;
+}
+
+.short-txt {
+  display: none;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1650px) {
+  .research .middle {
+    width: 705px;
+  }
+
+  .research .middle button {
+    max-width: 14rem;
+  }
+
+  .card .container {
+    width: 80%;
+  }
+}
+
+@media (max-width: 1399px) {
+  .research .middle {
+    flex-direction: column;
+    width: 480px;
+  }
+
+  .research .middle button {
+    max-width: 14rem;
+  }
+
+  .card .stocks div span p {
+    font-size: 1rem;
+  }
+
+  .card .tags {
+    width: 80%;
+    font-size: 0.7rem;
+  }
+
+  .card .right button {
+    width: 10rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .card .container {
+    width: 100%;
+  }
+
+  .card .top {
+    font-size: 0.9rem;
+    height: 2.5rem;
+  }
+
+  .card .stocks div span p {
+    font-size: 0.9rem;
+  }
+
+  .card .tags {
+    width: 80%;
+    font-size: 0.7rem;
+  }
+
+  .card .right {
+    width: 30%;
+  }
+
+  .card .right button {
+    width: 8rem;
+    font-size: 0.8rem;
+  }
+
+  .card .stocks img {
+    width: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .research img {
+    display: none;
+  }
+
+  .research .top {
+    font-size: 2rem;
+    flex-direction: column;
+  }
+
+  .research .middle {
+    flex-direction: column;
+    width: 220px;
+  }
+
+  .research .middle input {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .research .middle button {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .card .top {
+    font-size: 0.8rem;
+    height: 2.5rem;
+  }
+
+  .card .left img {
+    width: 8rem;
+  }
+
+  .card .left {
+    width: 80%;
+  }
+
+  .card .stocks div span p {
+    font-size: 0.8rem;
+  }
+
+  .card .stocks img {
+    display: none;
+  }
+
+  .card .right {
+    width: 20%;
+  }
+
+  .card .right button {
+    width: 5rem;
+    font-size: 0.8rem;
+    height: 2.2rem;
+  }
+
+  .short-txt {
+    display: block;
+  }
+
+  .long-txt {
+    display: none;
+  }
+}
+
+@media (max-width: 490px) {
+  img {
+    display: none;
+  }
+
+  .research .top {
+    font-size: 1.5rem;
+  }
+
+  .card .top {
+    font-size: 0.7rem;
+    height: 2rem;
+  }
+
+  .card .left {
+    display: none;
+  }
+}
