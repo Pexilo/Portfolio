@@ -6,60 +6,51 @@ import PriceSVG from "@assets/agostore/price.svg";
 import StockSVG from "@assets/agostore/stock.svg";
 import { Tire, tires } from "@data/agostore.data";
 import "@styles/agostore.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SquareLoader } from "react-spinners";
 import { simulateTyping, useDocumentTitle } from "src/utils/functions";
 import ScrollToTopButton from "./ScrollToTopButton";
 
-const Agostore = () => {
-  const [loading, setLoading] = useState(false);
+const Agostore = ({
+  fadeEffect,
+  fakeLoading,
+  loading,
+}: {
+  fadeEffect: string;
+  fakeLoading: () => Promise<void>;
+  loading: boolean;
+}) => {
   const [minimized, setMinimized] = useState(false);
-  const [fadeEffect, setFadeEffect] = useState("");
 
-  const fakeLoading = async () => {
-    return new Promise<void>((resolve) => {
-      setLoading(true);
-      setFadeEffect("fade-in");
-      setTimeout(() => {
-        setFadeEffect("fade-out");
-        setTimeout(() => {
-          setLoading(false);
-          setFadeEffect("");
-          resolve();
-        }, 500);
-      }, 1000);
-    });
-  };
+  useEffect(() => {
+    fakeLoading();
+  }, []);
 
-  return (
+  return loading ? (
+    <div className={`loader-container ${fadeEffect}`}>
+      <SquareLoader
+        size={150}
+        color={"var(--agostore-color)"}
+        loading={loading}
+      />
+    </div>
+  ) : (
     <div className="agostore-container">
-      {loading ? (
-        <div className={`loader-container ${fadeEffect}`}>
-          <SquareLoader
-            size={150}
-            color={"var(--agostore-color)"}
-            loading={loading}
-          />
+      <div className={`research fade-in ${fadeEffect}`}>
+        <Research
+          fakeLoading={fakeLoading}
+          minimized={minimized}
+          setMinimized={setMinimized}
+        />
+      </div>
+      {minimized && (
+        <div className={`card fade-in ${fadeEffect}`}>
+          <h3>Produits trouvés : {tires.length}</h3>
+          {tires.map((tire) => (
+            <Card key={tire.id} tire={tire} />
+          ))}
+          <ScrollToTopButton />
         </div>
-      ) : (
-        <>
-          <div className={`research fade-in ${fadeEffect}`}>
-            <Research
-              fakeLoading={fakeLoading}
-              minimized={minimized}
-              setMinimized={setMinimized}
-            />
-          </div>
-          {minimized && (
-            <div className={`card fade-in ${fadeEffect}`}>
-              <h3>Produits trouvés : {tires.length}</h3>
-              {tires.map((tire) => (
-                <Card key={tire.id} tire={tire} />
-              ))}
-              <ScrollToTopButton />
-            </div>
-          )}
-        </>
       )}
     </div>
   );

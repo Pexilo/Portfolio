@@ -4,6 +4,7 @@ import { portofolioList } from "@data/portfolio.data";
 import { skillList } from "@data/skill.data";
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { SquareLoader } from "react-spinners";
 import { Tooltip } from "react-tooltip";
 import ProfilePic from "src/assets/gael-massart.png";
 import "src/styles/home.css";
@@ -25,13 +26,26 @@ type LogoSources = {
   email: string;
   theme: string;
 };
-const Home = () => {
+const Home = ({
+  fakeLoading,
+  loading,
+  fadeEffect,
+}: {
+  fakeLoading: () => Promise<void>;
+  loading: boolean;
+  fadeEffect: string;
+}) => {
   const [activeTab, setActiveTab] = useState("portfolio");
   const [isDarkTheme, setIsDarkTheme] = useState(
     () => localStorage.getItem("isDark") === "true"
   );
 
   useEffect(() => {
+    fakeLoading();
+  }, []);
+
+  useEffect(() => {
+    fakeLoading();
     const applyTheme = () => {
       const themeClass = isDarkTheme ? "dark-theme" : "";
       document.body.className = themeClass;
@@ -49,8 +63,16 @@ const Home = () => {
   }, [isDarkTheme]);
   const toggleTheme = () => setIsDarkTheme((prev) => !prev);
 
-  return (
-    <div className={isDarkTheme ? "dark-theme" : ""}>
+  return loading ? (
+    <div className={`loader-container ${fadeEffect}`}>
+      <SquareLoader
+        size={150}
+        color={"var(--btn-bg-color)"}
+        loading={loading}
+      />
+    </div>
+  ) : (
+    <div className={`${fadeEffect} fade-in ${isDarkTheme ? "dark-theme" : ""}`}>
       <section className="hero">
         <img
           className="theme-btn"

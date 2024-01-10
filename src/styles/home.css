@@ -216,6 +216,11 @@ footer,
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.contact-btn {
+  color: var(--primary-text-color);
+  background-color: var(--nav-bg-color);
+}
+
 .btn-2 {
   width: 8.5rem;
   background-color: var(--btn-nav-bg-color);
@@ -261,6 +266,12 @@ footer,
 .portfolio,
 .skills {
   margin-top: 2rem;
+}
+
+.portfolio img,
+.hero-pic,
+button {
+  box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.1);
 }
 
 .skill-container p {
