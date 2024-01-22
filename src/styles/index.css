@@ -23,6 +23,21 @@
   }
 }
 
+@font-face {
+  font-family: "GG Sans";
+  src: url("../assets/fonts/ggsans-Normal.woff2") format("woff2");
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Emoji";
+  src: url("../assets/fonts/NotoColorEmoji-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 .fade-out {
   animation: fadeOut 1s ease-in-out;
 }
@@ -31,12 +46,13 @@
   animation: fadeIn 1s ease-in-out;
 }
 
+.scale-up {
+  transform: scale(1.1);
+}
+
 body {
   margin: 0;
-  font-family: var(--primary-font, "Arial, sans-serif");
-  background-color: var(--primary-bg-color);
   transition: background-color 0.3s ease;
-  color: var(--primary-text-color);
 }
 
 code {
@@ -45,9 +61,10 @@ code {
 }
 
 :root {
+  --discord-font: "GG Sans", "Noto Emoji", sans-serif;
+  --primary-font: "Poppins", sans-serif;
   --agostore-color: #ef8220;
   /* Light Theme */
-  --primary-font: "Poppins", sans-serif;
   --primary-bg-color: #fafafa;
   --primary-text-color: #333333;
   --secondary-font: "Inter", sans-serif;

@@ -72,7 +72,11 @@ const Home = ({
       />
     </div>
   ) : (
-    <div className={`${fadeEffect} fade-in ${isDarkTheme ? "dark-theme" : ""}`}>
+    <div
+      className={`home-container ${fadeEffect} fade-in ${
+        isDarkTheme ? "dark-theme" : ""
+      }`}
+    >
       <section className="hero">
         <img
           className="theme-btn"

@@ -6,6 +6,7 @@ import Misc from "@components/Misc";
 import WhosThat from "@components/WhosThat";
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Stealthy from "./Stealthy";
 
 const App = () => {
   const [fadeEffect, setFadeEffect] = useState("");
@@ -52,7 +53,7 @@ const App = () => {
             }
           />
           <Route path="discord" Component={Discord}>
-            <Route path="stealthy" Component={Mage} />
+            <Route path="stealthy" Component={Stealthy} />
             <Route path="whosthat" Component={WhosThat} />
             <Route path="misc" Component={Misc} />
           </Route>
