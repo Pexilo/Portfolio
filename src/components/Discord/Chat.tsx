@@ -5,18 +5,23 @@ import StickerIcon from "@assets/discord/sticker.svg";
 import {
   Channel,
   Message as MessageType,
-  randomizedUser,
+  portfolioUser,
 } from "@data/discord.data";
 import { getRamdomEmoji } from "@data/emojis.data";
 import { useEffect, useState } from "react";
 import ChatHeader from "./ChatHeader";
 import Message from "./Message";
+import Members from "./Members";
 
-function Chat({
+const Chat = ({
   channel,
+  toggleMembers,
+  setToggleMembers,
 }: Readonly<{
   channel: Channel;
-}>) {
+  toggleMembers: boolean;
+  setToggleMembers: (toggleMembers: boolean) => void;
+}>) => {
   const { channelId, name, messages: channelMessages } = channel;
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState(channelMessages);
@@ -39,10 +44,7 @@ function Chat({
         messageId: (messages.length + 1).toString(),
         timestamp: Date.now().toString(),
         content: input,
-        user: {
-          name: randomizedUser.name,
-          avatar: randomizedUser.avatar,
-        },
+        user: portfolioUser,
       },
     ]);
 
@@ -53,53 +55,68 @@ function Chat({
     messages &&
     messages.length > 0 && (
       <div className="chat">
-        <ChatHeader channelName={name} />
-
-        <div className="chat__messages">
-          {messages.map((message: MessageType, index: number) => (
-            <Message
-              key={message.messageId}
-              message={message}
-              lastMessage={messages[index - 1]}
-            />
-          ))}
+        <div className="chat-toggleMembers">
+          <ChatHeader
+            channelName={name}
+            messages={messages}
+            toggleMembers={toggleMembers}
+            setToggleMembers={setToggleMembers}
+          />
         </div>
 
-        <div className="chat__input">
-          <img src={ImportFileIcon} alt="Import File" />
-          <form>
-            <input
-              value={input}
-              disabled={!channelId}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder={`Message #${name}`}
-            />
-            <button
-              disabled={!channelId}
-              className="chat__inputButton"
-              type="submit"
-              onClick={sendMessage}
-            >
-              Send Message
-            </button>
-          </form>
-
-          <div className="chat__inputs">
-            <img src={GiftIcon} alt="Gift" />
-            <img src={GifIcon} alt="Gif" />
-            <img src={StickerIcon} alt="Sticker" />
-            <img
-              className="chat__emoji"
-              src={searchEmoji.image}
-              alt="Emoji"
-              onMouseEnter={handleSearchEmoji}
-              onClick={() => setInput(input + searchEmoji.emoji)}
-            />
+        <div
+          className="chat-content"
+          style={toggleMembers ? { width: "80%" } : { width: "100%" }}
+        >
+          <div className="chat-messages">
+            {messages.map((message: MessageType, index: number) => (
+              <Message
+                key={message.messageId}
+                message={message}
+                lastMessage={messages[index - 1]}
+              />
+            ))}
           </div>
+
+          <div className="chat-input">
+            <img src={ImportFileIcon} alt="Import File" />
+            <form>
+              <input
+                value={input}
+                disabled={!channelId}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder={`Message #${name}`}
+              />
+              <button
+                disabled={!channelId}
+                style={{ display: "none" }}
+                type="submit"
+                onClick={sendMessage}
+              >
+                Send Message
+              </button>
+            </form>
+
+            <div className="chat-input-interactions">
+              <img src={GiftIcon} alt="Gift" />
+              <img src={GifIcon} alt="Gif" />
+              <img src={StickerIcon} alt="Sticker" />
+              <img
+                className="interaction-emoji"
+                src={searchEmoji.image}
+                alt="Emoji"
+                onMouseEnter={handleSearchEmoji}
+                onClick={() => setInput(input + searchEmoji.emoji)}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="chat-members">
+          <Members toggleMembers={toggleMembers} />
         </div>
       </div>
     )
   );
-}
+};
 
 export default Chat;

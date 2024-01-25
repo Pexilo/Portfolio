@@ -6,13 +6,27 @@ import PinIcon from "@assets/discord/pin.svg";
 import SearchIcon from "@assets/discord/search.svg";
 import ThreadIcon from "@assets/discord/thread.svg";
 import UnreadMessagesIcon from "@assets/discord/unread-messages.svg";
+import { Message } from "@data/discord.data";
 import { useState } from "react";
 import { Tooltip } from "react-tooltip";
 
-function ChatHeader({ channelName }: Readonly<{ channelName: string }>) {
+const ChatHeader = ({
+  channelName,
+  messages,
+  toggleMembers,
+  setToggleMembers,
+}: Readonly<{
+  channelName: string;
+  messages: Message[];
+  toggleMembers: boolean;
+  setToggleMembers: (toggleMembers: boolean) => void;
+}>) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  const unreadMessagesDate = new Date().toLocaleString("en-GB", {
+  const firstUnreadMessage = messages[0].timestamp;
+  const unreadMessagesDate = new Date(
+    parseInt(firstUnreadMessage)
+  ).toLocaleDateString("en-GB", {
     hour: "numeric",
     minute: "numeric",
     day: "numeric",
@@ -23,14 +37,14 @@ function ChatHeader({ channelName }: Readonly<{ channelName: string }>) {
   return (
     <>
       <div className="chatHeader dark-theme">
-        <div className="chatHeader__left">
+        <div className="chatHeader-channelName">
           <h3>
-            <span className="chatHeader__hash">#</span>
+            <span className="channelName-hash">#</span>
             {channelName}
           </h3>
         </div>
 
-        <div className="chatHeader__right">
+        <div className="chatHeader-interactions">
           <img
             src={ThreadIcon}
             alt="Thread"
@@ -57,24 +71,20 @@ function ChatHeader({ channelName }: Readonly<{ channelName: string }>) {
             alt="Members"
             data-tooltip-id="members"
             data-tooltip-content={"Show Member List"}
+            style={{ cursor: "pointer" }}
+            onClick={() => setToggleMembers(!toggleMembers)}
           />
           <Tooltip id="members" place="bottom" />
 
-          <div className="chatHeader__search">
+          <div className="interaction-search">
             <input
-              className="search__input"
+              className="search-input"
               placeholder="Search"
               onKeyDown={(e) => e.preventDefault()}
               onFocus={() => setIsSearchOpen(true)}
               onBlur={() => setIsSearchOpen(false)}
             />
-            <img
-              className={
-                isSearchOpen ? "search__img search__active" : "search__img"
-              }
-              src={SearchIcon}
-              alt=""
-            />
+            <img className="search-icon" src={SearchIcon} alt="Search" />
           </div>
 
           <img
@@ -93,10 +103,14 @@ function ChatHeader({ channelName }: Readonly<{ channelName: string }>) {
           <Tooltip id="help" place="bottom" />
         </div>
       </div>
-      <button className="chatHeader__unread">
-        <span className="chatHeader__unread__content">
+      <button
+        className="chatHeader-banner"
+        style={toggleMembers ? { width: "75%" } : { width: "95%" }}
+      >
+        <span className="banner-content">
           <p>
-            5+ new messages since <span>{unreadMessagesDate}</span>
+            {messages.length}+ new messages since{" "}
+            <span>{unreadMessagesDate}</span>
           </p>
           <span>
             <p>Mark as read</p>
@@ -106,6 +120,6 @@ function ChatHeader({ channelName }: Readonly<{ channelName: string }>) {
       </button>
     </>
   );
-}
+};
 
 export default ChatHeader;

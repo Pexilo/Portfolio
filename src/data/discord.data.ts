@@ -9,36 +9,60 @@ export type Channel = {
   name: string;
   locked: boolean;
   messages: Message[];
+  type?: "text" | "voice";
 };
 export type Category = {
   categoryId: string;
   name: string;
   channels: Channel[];
 };
+type Status = "online" | "idle" | "dnd" | "offline";
+type Activity = "playing" | "streaming" | "listening" | "watching";
 export type User = {
   name: string;
   avatar: string;
+  status: Status;
+  activity?: {
+    description: string;
+    type: Activity;
+  };
   tag?: string;
+  inVoiceChannel?: string;
 };
 export type Server = {
   name: string;
   categories: Category[];
 };
 
-export const randomizedUser: User = {
-  name: getRandomUserName(),
-  avatar: getRandomUserAvatar(),
-  tag: "#" + Math.floor(Math.random() * 10000),
+/*
+ ** Users
+ */
+// Randomized user (visitor)
+export const portfolioUser: User = {
+  ...createRandomizedMember(),
+  inVoiceChannel: "6",
 };
 
+// Portfolio owner (me)
 import Me from "@assets/discord/avatars/discord-avatar-me.png";
-
 const meUser: User = {
   name: "Gaël",
   avatar: Me,
+  activity: {
+    description: "Visual Studio Code",
+    type: "playing",
+  },
+  status: "online",
   tag: "#0001",
 };
 
+// User list
+export const userList: User[] = [meUser, portfolioUser];
+
+/*
+ ** Server
+ ** categories[channels[messages]]
+ */
 export const server: Server = {
   name: "Gaël's Portfolio 💪",
   categories: [
@@ -55,19 +79,19 @@ export const server: Server = {
               messageId: "1",
               timestamp: Date.now().toString(),
               content: "Hey, Gaël! 👋",
-              user: randomizedUser,
+              user: portfolioUser,
             },
             {
               messageId: "2",
               timestamp: Date.now().toString(),
-              content: `Hey, ${randomizedUser.name}! 👋`,
+              content: `Hey, ${portfolioUser.name}! 👋`,
               user: meUser,
             },
             {
               messageId: "56",
               timestamp: Date.now().toString(),
               content: "Welcome to my portfolio!",
-              user: randomizedUser,
+              user: portfolioUser,
             },
           ],
         },
@@ -131,9 +155,16 @@ export const server: Server = {
               messageId: "6",
               timestamp: Date.now().toString(),
               content: "<a href='https://github.com/Pexilo'>My github</a>",
-              user: randomizedUser,
+              user: portfolioUser,
             },
           ],
+        },
+        {
+          channelId: "6",
+          name: "speaking",
+          locked: false,
+          type: "voice",
+          messages: [],
         },
       ],
     },
@@ -142,7 +173,7 @@ export const server: Server = {
       name: "Private",
       channels: [
         {
-          channelId: "6",
+          channelId: "7",
           name: "code-secrets",
           locked: true,
           messages: [
@@ -150,7 +181,7 @@ export const server: Server = {
               messageId: "7",
               timestamp: Date.now().toString(),
               content: "Hey, I'm a secret! 👀",
-              user: randomizedUser,
+              user: portfolioUser,
             },
           ],
         },
@@ -159,6 +190,9 @@ export const server: Server = {
   ],
 };
 
+/*
+ ** Avatars
+ */
 import Avatar1 from "@assets/discord/avatars/discord-avatar1.png";
 import Avatar2 from "@assets/discord/avatars/discord-avatar2.png";
 import Avatar3 from "@assets/discord/avatars/discord-avatar3.png";
@@ -173,26 +207,49 @@ function getRandomUserAvatar() {
 
 function getRandomUserName() {
   const names = [
-    "Sam",
-    "Ivan",
-    "John",
     "Alex",
-    "Bob",
-    "Alice",
-    "Eve",
-    "Carol",
-    "Dave",
-    "Frank",
-    "Grace",
-    "Heidi",
-    "Mallory",
-    "Oscar",
-    "Peggy",
-    "Sybil",
-    "Trudy",
-    "Victor",
-    "Walter",
-    "Wendy",
+    "Camille",
+    "Morgan",
+    "Jordan",
+    "Sacha",
+    "Taylor",
+    "Charlie",
+    "Quinn",
+    "Riley",
+    "Sam",
+    "Jamie",
+    "Maxime",
+    "Robin",
+    "Chris",
+    "Lou",
   ];
   return names[Math.floor(Math.random() * names.length)];
+}
+
+// Method to get a random activity
+function getRandomActivity() {
+  const activities: User["activity"][] = [
+    { description: "The Last of Us: Part I", type: "playing" },
+    { description: "Spotify", type: "listening" },
+    { description: "Netflix", type: "watching" },
+    { description: "Twitch", type: "watching" },
+    { description: "YouTube", type: "watching" },
+    { description: "Minecraft", type: "playing" },
+    { description: "Rocket League", type: "playing" },
+    { description: "Cyberpunk 2077", type: "playing" },
+    { description: "The Witcher 3", type: "playing" },
+  ];
+  return activities[Math.floor(Math.random() * activities.length)];
+}
+
+export function createRandomizedMember() {
+  return {
+    name: getRandomUserName(),
+    avatar: getRandomUserAvatar(),
+    status: ["online", "dnd", "offline"].sort(
+      () => Math.random() - 0.5
+    )[0] as Status,
+    activity: getRandomActivity(),
+    tag: "#" + Math.floor(Math.random() * 10000),
+  };
 }

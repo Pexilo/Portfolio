@@ -9,7 +9,7 @@ import ScreenShareIcon from "@assets/discord/screen-share.svg";
 import SettingsIcon from "@assets/discord/settings.svg";
 import SoundSupressorIcon from "@assets/discord/sound-supressor.svg";
 import SoundboxIcon from "@assets/discord/soundbox.svg";
-import { Channel, Server, randomizedUser } from "@data/discord.data";
+import { Channel, Server, portfolioUser } from "@data/discord.data";
 import { Tooltip } from "react-tooltip";
 import SidebarChannel from "./SidebarChannel";
 
@@ -26,33 +26,36 @@ const Sidebar = ({
 
   return (
     <div className="sidebar dark-theme">
-      <div className="sidebar__top">
+      <div className="sidebar-serverName">
         <h3>{name}</h3>
         <img src={ExpandMoreIcon} alt="Expand More" />
       </div>
 
-      {categories?.map((category) => (
-        <div className="sidebar__channels" key={category.categoryId}>
-          <div className="sidebar__channelsHeader">
-            <div className="sidebar__header">
-              <img src={ExpandMoreIcon} alt="Expand More" />
-              <h4>{category.name.toUpperCase()}</h4>
+      <div className="sidebar-channels">
+        {categories?.map((category) => (
+          <div className="channel-container" key={category.categoryId}>
+            <div className="channel-category">
+              <div className="category-name">
+                <img src={ExpandMoreIcon} alt="Expand More" />
+                <h4>{category.name.toUpperCase()}</h4>
+              </div>
+            </div>
+            <div className="channel-list">
+              {category.channels?.map((channel) => (
+                <SidebarChannel
+                  key={channel.channelId}
+                  channel={channel}
+                  currentChannel={currentChannel}
+                  handleFindChannel={handleFindChannel}
+                />
+              ))}
             </div>
           </div>
-          <div className="sidebar__channelsList">
-            {category.channels?.map((channel) => (
-              <SidebarChannel
-                key={channel.channelId}
-                channel={channel}
-                currentChannel={currentChannel}
-                handleFindChannel={handleFindChannel}
-              />
-            ))}
-          </div>
-        </div>
-      ))}
-      <div className="sidebar__voice">
-        <div className="sidebar__voiceInfo">
+        ))}
+      </div>
+
+      <div className="sidebar-voiceInfo">
+        <div className="voiceInfo-content">
           <span>
             <img src={NetworkIcon} alt="Network" />
             <h3>Voice Connected</h3>
@@ -60,14 +63,14 @@ const Sidebar = ({
           <p>🔉 Create a channel</p>
         </div>
 
-        <div className="sidebar__voiceIcons">
+        <div className="voiceInfo-icons">
           <img src={SoundSupressorIcon} alt="Sound Supressor" />
           <img src={LeaveCallIcon} alt="Leave Call" />
         </div>
       </div>
-      <div className="sidebar__voiceInterraction">
+      <div className="sidebar-interactions">
         <div
-          className="sidebar__voiceInterractionBox"
+          className="interaction-box"
           data-tooltip-id="camera-off-icon"
           data-tooltip-content={"Turn on camera"}
         >
@@ -75,7 +78,7 @@ const Sidebar = ({
         </div>
         <Tooltip id="camera-off-icon" place="top" />
         <div
-          className="sidebar__voiceInterractionBox"
+          className="interaction-box"
           data-tooltip-id="screen-share-icon"
           data-tooltip-content={"Share your screen"}
         >
@@ -83,7 +86,7 @@ const Sidebar = ({
         </div>
         <Tooltip id="screen-share-icon" place="top" />
         <div
-          className="sidebar__voiceInterractionBox"
+          className="interaction-box"
           data-tooltip-id="activities-icon"
           data-tooltip-content={"Start an activity"}
         >
@@ -91,7 +94,7 @@ const Sidebar = ({
         </div>
         <Tooltip id="activities-icon" place="top" />
         <div
-          className="sidebar__voiceInterractionBox"
+          className="interaction-box"
           data-tooltip-id="soundbox-icon"
           data-tooltip-content={"Open Soundboard"}
         >
@@ -100,13 +103,13 @@ const Sidebar = ({
         <Tooltip id="soundbox-icon" place="top" />
       </div>
 
-      <div className="sidebar__profile">
-        <img src={randomizedUser.avatar} alt="Avatar" />
+      <div className="sidebar-user">
+        <img src={portfolioUser.avatar} alt="Avatar" />
         <span>
-          <h3>{randomizedUser.name}</h3>
+          <h3>{portfolioUser.name}</h3>
           <p>
-            {randomizedUser.name}
-            {randomizedUser.tag}
+            {portfolioUser.name}
+            {portfolioUser.tag}
           </p>
         </span>
 

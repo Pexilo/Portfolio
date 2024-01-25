@@ -5,6 +5,7 @@ import Chat from "./Discord/Chat";
 import Sidebar from "./Discord/Sidebar";
 
 const Discord = () => {
+  const [toggleMembers, setToggleMembers] = useState(false);
   const [currentChannel, setCurrentChannel] = useState<Channel>(
     server.categories[0].channels[0]
   );
@@ -24,7 +25,11 @@ const Discord = () => {
         currentChannel={currentChannel}
         handleFindChannel={handleFindChannel}
       />
-      <Chat channel={currentChannel} />
+      <Chat
+        channel={currentChannel}
+        toggleMembers={toggleMembers}
+        setToggleMembers={setToggleMembers}
+      />
     </div>
   );
 };
