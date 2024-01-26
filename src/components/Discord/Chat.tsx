@@ -66,7 +66,7 @@ const Chat = ({
 
         <div
           className="chat-content"
-          style={toggleMembers ? { width: "80%" } : { width: "100%" }}
+          style={toggleMembers ? { width: "78%" } : { width: "100%" }}
         >
           <div className="chat-messages">
             {messages.map((message: MessageType, index: number) => (

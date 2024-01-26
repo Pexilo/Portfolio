@@ -50,3 +50,14 @@ export const useDocumentTitle = (title: string, prevailOnUnmount = false) => {
     []
   );
 };
+
+export const formattedTime = (timeStamp: number): string => {
+  const date = new Date(timeStamp);
+  const timeComponents = [date.getHours(), date.getMinutes()];
+  return timeComponents
+    .map((component) => {
+      const pad = component < 10 ? "0" : "";
+      return pad + component;
+    })
+    .join(":");
+};

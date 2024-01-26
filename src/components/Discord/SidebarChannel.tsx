@@ -1,6 +1,7 @@
 import AddUserIcon from "@assets/discord/add-user.svg";
 import HashtagLockedIcon from "@assets/discord/hashtag-locked.svg";
 import HashtagIcon from "@assets/discord/hashtag.svg";
+import MicIcon from "@assets/discord/mic.svg";
 import VoiceIcon from "@assets/discord/voice.svg";
 import { Channel, portfolioUser } from "@data/discord.data";
 import { Tooltip } from "react-tooltip";
@@ -34,8 +35,9 @@ const SidebarChannel = ({
     <div className={"sidebarChannel dark-theme"} onClick={handleClick}>
       <div
         className={`sidebarChannel-name ${
-          currentChannel.channelId === channelId ||
-          (channel.type === "voice" && "sidebarChannel-name--selected")
+          (currentChannel.channelId === channelId ||
+            channel.type === "voice") &&
+          "sidebarChannel-name--selected"
         }`}
         style={locked ? { color: "#4a4a4a", cursor: "not-allowed" } : {}}
       >
@@ -57,8 +59,20 @@ const SidebarChannel = ({
       </div>
       {portfolioUser && portfolioUser.inVoiceChannel === channelId && (
         <div className="sidebarChannel-userInVoice">
-          <img src={portfolioUser.avatar} alt="User Avatar" />
+          <img
+            className="userInVoice-avatar"
+            src={portfolioUser.avatar}
+            alt="User Avatar"
+          />
           <p>{portfolioUser.name}</p>
+          <img
+            className="userInVoice-micIcon"
+            src={MicIcon}
+            alt="Mic"
+            data-tooltip-id="mic-icon"
+            data-tooltip-content={"Muted"}
+          />
+          <Tooltip id="mic-icon" place="top" />
         </div>
       )}
     </div>

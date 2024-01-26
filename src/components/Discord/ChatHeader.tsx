@@ -9,6 +9,7 @@ import UnreadMessagesIcon from "@assets/discord/unread-messages.svg";
 import { Message } from "@data/discord.data";
 import { useState } from "react";
 import { Tooltip } from "react-tooltip";
+import { formattedTime } from "src/utils/functions";
 
 const ChatHeader = ({
   channelName,
@@ -23,16 +24,8 @@ const ChatHeader = ({
 }>) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  const firstUnreadMessage = messages[0].timestamp;
-  const unreadMessagesDate = new Date(
-    parseInt(firstUnreadMessage)
-  ).toLocaleDateString("en-GB", {
-    hour: "numeric",
-    minute: "numeric",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+  const firstUnreadMessage = parseInt(messages[0].timestamp);
+  const unreadMessagesDate = formattedTime(firstUnreadMessage);
 
   return (
     <>
@@ -105,11 +98,11 @@ const ChatHeader = ({
       </div>
       <button
         className="chatHeader-banner"
-        style={toggleMembers ? { width: "75%" } : { width: "95%" }}
+        style={toggleMembers ? { width: "73%" } : { width: "96%" }}
       >
         <span className="banner-content">
           <p>
-            {messages.length}+ new messages since{" "}
+            {messages.length}+ nouveau(x) messages depuis{" "}
             <span>{unreadMessagesDate}</span>
           </p>
           <span>

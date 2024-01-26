@@ -5,7 +5,7 @@ import Chat from "./Discord/Chat";
 import Sidebar from "./Discord/Sidebar";
 
 const Discord = () => {
-  const [toggleMembers, setToggleMembers] = useState(false);
+  const [toggleMembers, setToggleMembers] = useState(true);
   const [currentChannel, setCurrentChannel] = useState<Channel>(
     server.categories[0].channels[0]
   );

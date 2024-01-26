@@ -15,9 +15,10 @@ export type Category = {
   categoryId: string;
   name: string;
   channels: Channel[];
+  open?: boolean;
 };
 type Status = "online" | "idle" | "dnd" | "offline";
-type Activity = "playing" | "streaming" | "listening" | "watching";
+type Activity = "joue à" | "streame" | "écoute" | "regarde";
 export type User = {
   name: string;
   avatar: string;
@@ -50,7 +51,7 @@ const meUser: User = {
   avatar: Me,
   activity: {
     description: "Visual Studio Code",
-    type: "playing",
+    type: "joue à",
   },
   status: "online",
   tag: "#0001",
@@ -64,46 +65,34 @@ export const userList: User[] = [meUser, portfolioUser];
  ** categories[channels[messages]]
  */
 export const server: Server = {
-  name: "Gaël's Portfolio 💪",
+  name: "Portfolio de Gaël 🚀",
   categories: [
     {
       categoryId: "1",
-      name: "Welcome",
+      name: "🤠 - Bienvenue",
+      open: true,
       channels: [
         {
           channelId: "1",
-          name: "general",
+          name: "💬｜général",
           locked: false,
           messages: [
             {
-              messageId: "1",
+              messageId: "01",
               timestamp: Date.now().toString(),
               content: "Hey, Gaël! 👋",
               user: portfolioUser,
             },
             {
-              messageId: "2",
+              messageId: "02",
               timestamp: Date.now().toString(),
               content: `Hey, ${portfolioUser.name}! 👋`,
               user: meUser,
             },
             {
-              messageId: "56",
+              messageId: "03",
               timestamp: Date.now().toString(),
-              content: "Welcome to my portfolio!",
-              user: portfolioUser,
-            },
-          ],
-        },
-        {
-          channelId: "2",
-          name: "rules",
-          locked: false,
-          messages: [
-            {
-              messageId: "3",
-              timestamp: Date.now().toString(),
-              content: "Be nice",
+              content: "Bienvenue sur mon portfolio!",
               user: meUser,
             },
           ],
@@ -112,15 +101,16 @@ export const server: Server = {
     },
     {
       categoryId: "2",
-      name: "Projects",
+      name: "💈- Projets",
+      open: true,
       channels: [
         {
-          channelId: "3",
-          name: "portfolio",
+          channelId: "2",
+          name: "❔｜whos-that",
           locked: false,
           messages: [
             {
-              messageId: "4",
+              messageId: "21",
               timestamp: Date.now().toString(),
               content: "This is my portfolio",
               user: meUser,
@@ -128,12 +118,25 @@ export const server: Server = {
           ],
         },
         {
-          channelId: "4",
-          name: "discord",
+          channelId: "3",
+          name: "🐲｜steathy",
           locked: false,
           messages: [
             {
-              messageId: "5",
+              messageId: "31",
+              timestamp: Date.now().toString(),
+              content: "This is a discord clone",
+              user: meUser,
+            },
+          ],
+        },
+        {
+          channelId: "4",
+          name: "⚡｜template",
+          locked: false,
+          messages: [
+            {
+              messageId: "41",
               timestamp: Date.now().toString(),
               content: "This is a discord clone",
               user: meUser,
@@ -144,15 +147,16 @@ export const server: Server = {
     },
     {
       categoryId: "3",
-      name: "Social",
+      name: "🎈 - Social",
+      open: true,
       channels: [
         {
           channelId: "5",
-          name: "github",
+          name: "🤖｜github",
           locked: false,
           messages: [
             {
-              messageId: "6",
+              messageId: "41",
               timestamp: Date.now().toString(),
               content: "<a href='https://github.com/Pexilo'>My github</a>",
               user: portfolioUser,
@@ -161,7 +165,7 @@ export const server: Server = {
         },
         {
           channelId: "6",
-          name: "speaking",
+          name: "🗻 Everest",
           locked: false,
           type: "voice",
           messages: [],
@@ -170,15 +174,16 @@ export const server: Server = {
     },
     {
       categoryId: "4",
-      name: "Private",
+      name: "🔒 - Privé",
+      open: false,
       channels: [
         {
           channelId: "7",
-          name: "code-secrets",
+          name: "❌｜code-secrets",
           locked: true,
           messages: [
             {
-              messageId: "7",
+              messageId: "71",
               timestamp: Date.now().toString(),
               content: "Hey, I'm a secret! 👀",
               user: portfolioUser,
@@ -229,15 +234,15 @@ function getRandomUserName() {
 // Method to get a random activity
 function getRandomActivity() {
   const activities: User["activity"][] = [
-    { description: "The Last of Us: Part I", type: "playing" },
-    { description: "Spotify", type: "listening" },
-    { description: "Netflix", type: "watching" },
-    { description: "Twitch", type: "watching" },
-    { description: "YouTube", type: "watching" },
-    { description: "Minecraft", type: "playing" },
-    { description: "Rocket League", type: "playing" },
-    { description: "Cyberpunk 2077", type: "playing" },
-    { description: "The Witcher 3", type: "playing" },
+    { description: "The Last of Us: Part I", type: "joue à" },
+    { description: "Spotify", type: "écoute" },
+    { description: "Netflix", type: "regarde" },
+    { description: "Twitch", type: "regarde" },
+    { description: "YouTube", type: "regarde" },
+    { description: "Minecraft", type: "joue à" },
+    { description: "Rocket League", type: "joue à" },
+    { description: "Cyberpunk 2077", type: "joue à" },
+    { description: "The Witcher 3", type: "joue à" },
   ];
   return activities[Math.floor(Math.random() * activities.length)];
 }

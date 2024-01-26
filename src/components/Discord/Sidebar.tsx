@@ -10,6 +10,7 @@ import SettingsIcon from "@assets/discord/settings.svg";
 import SoundSupressorIcon from "@assets/discord/sound-supressor.svg";
 import SoundboxIcon from "@assets/discord/soundbox.svg";
 import { Channel, Server, portfolioUser } from "@data/discord.data";
+import { useEffect, useState } from "react";
 import { Tooltip } from "react-tooltip";
 import SidebarChannel from "./SidebarChannel";
 
@@ -22,7 +23,19 @@ const Sidebar = ({
   currentChannel: Channel;
   handleFindChannel: (channelId: Channel["channelId"]) => void;
 }) => {
+  const [categoriesChanged, setCategoriesChanged] = useState(false);
   const { name, categories } = server;
+
+  // Find portfolioUser's voice channel
+  const portfolioUserChannel = categories
+    ?.flatMap((category) => category.channels)
+    .find((channel) => channel.channelId === portfolioUser.inVoiceChannel);
+
+  useEffect(() => {
+    if (categoriesChanged) {
+      setCategoriesChanged(false);
+    }
+  }, [categoriesChanged]);
 
   return (
     <div className="sidebar dark-theme">
@@ -35,21 +48,33 @@ const Sidebar = ({
         {categories?.map((category) => (
           <div className="channel-container" key={category.categoryId}>
             <div className="channel-category">
-              <div className="category-name">
-                <img src={ExpandMoreIcon} alt="Expand More" />
+              <div
+                className="category-name"
+                onClick={() => {
+                  category.open = !category.open;
+                  setCategoriesChanged(true);
+                }}
+              >
+                <img
+                  src={ExpandMoreIcon}
+                  alt="Expand More"
+                  style={{ transform: category.open ? "rotate(180deg)" : "" }}
+                />
                 <h4>{category.name.toUpperCase()}</h4>
               </div>
             </div>
-            <div className="channel-list">
-              {category.channels?.map((channel) => (
-                <SidebarChannel
-                  key={channel.channelId}
-                  channel={channel}
-                  currentChannel={currentChannel}
-                  handleFindChannel={handleFindChannel}
-                />
-              ))}
-            </div>
+            {category.open && (
+              <div className="channel-list">
+                {category.channels?.map((channel) => (
+                  <SidebarChannel
+                    key={channel.channelId}
+                    channel={channel}
+                    currentChannel={currentChannel}
+                    handleFindChannel={handleFindChannel}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -60,7 +85,7 @@ const Sidebar = ({
             <img src={NetworkIcon} alt="Network" />
             <h3>Voice Connected</h3>
           </span>
-          <p>🔉 Create a channel</p>
+          <p>{portfolioUserChannel?.name ?? ""}</p>
         </div>
 
         <div className="voiceInfo-icons">
@@ -113,7 +138,7 @@ const Sidebar = ({
           </p>
         </span>
 
-        <div className="sidebar__profileIcons">
+        <div className="user-icons">
           <img src={MuteIcon} alt="Mute" />
           <img src={HeadsetIcon} alt="Headset" />
           <img src={SettingsIcon} alt="Settings" />
