@@ -52,7 +52,16 @@ const App = () => {
               />
             }
           />
-          <Route path="discord" Component={Discord}>
+          <Route
+            path="discord"
+            element={
+              <Discord
+                fadeEffect={fadeEffect}
+                fakeLoading={fakeLoading}
+                loading={loading}
+              />
+            }
+          >
             <Route path="stealthy" Component={Stealthy} />
             <Route path="whosthat" Component={WhosThat} />
             <Route path="misc" Component={Misc} />

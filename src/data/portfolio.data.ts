@@ -21,10 +21,10 @@ export const portofolioList: Portofolio[] = [
   },
   {
     id: 2,
-    name: "Project 2",
+    name: "Discord",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris aliquam, nisl vitae blandit tincidunt, lectus urna ultricies leo, a ultricies sapien nulla eget velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nulla facilisi. Donec nec odio vel nisi aliquam posuere. Sed euismod, nisl quis dignissim ultricies",
-    link: "https://www.google.com",
+    link: "/portfolio/discord",
     image: porject2,
   },
   {

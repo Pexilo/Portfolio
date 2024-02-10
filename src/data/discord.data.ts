@@ -31,6 +31,7 @@ export type User = {
   inVoiceChannel?: string;
 };
 export type Server = {
+  id: string;
   name: string;
   categories: Category[];
 };
@@ -65,6 +66,7 @@ export const userList: User[] = [meUser, portfolioUser];
  ** categories[channels[messages]]
  */
 export const server: Server = {
+  id: "1200457876536315946",
   name: "Portfolio de Gaël 🚀",
   categories: [
     {
@@ -73,7 +75,7 @@ export const server: Server = {
       open: true,
       channels: [
         {
-          channelId: "1",
+          channelId: "1201161536400531476",
           name: "💬｜général",
           locked: false,
           messages: [
@@ -105,7 +107,7 @@ export const server: Server = {
       open: true,
       channels: [
         {
-          channelId: "2",
+          channelId: "1201161499910099055",
           name: "❔｜whos-that",
           locked: false,
           messages: [
@@ -118,7 +120,7 @@ export const server: Server = {
           ],
         },
         {
-          channelId: "3",
+          channelId: "1200457877329031204",
           name: "🐲｜steathy",
           locked: false,
           messages: [
@@ -131,7 +133,7 @@ export const server: Server = {
           ],
         },
         {
-          channelId: "4",
+          channelId: "1201161569619419187",
           name: "⚡｜template",
           locked: false,
           messages: [
@@ -151,7 +153,7 @@ export const server: Server = {
       open: true,
       channels: [
         {
-          channelId: "5",
+          channelId: "1201161645045583903",
           name: "🤖｜github",
           locked: false,
           messages: [
@@ -164,7 +166,7 @@ export const server: Server = {
           ],
         },
         {
-          channelId: "6",
+          channelId: "1201162013666181160",
           name: "🗻 Everest",
           locked: false,
           type: "voice",
@@ -178,7 +180,7 @@ export const server: Server = {
       open: false,
       channels: [
         {
-          channelId: "7",
+          channelId: "1201162149972676640",
           name: "❌｜code-secrets",
           locked: true,
           messages: [

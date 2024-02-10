@@ -24,7 +24,7 @@ type Me = {
 };
 export const me: Me = {
   name: "Gaël Massart",
-  title: "Developer fullstack",
+  title: "Développeur fullstack",
   location: "Montpellier, France",
   email: "msrt.gael@gmail.com",
   linkedin: "https://www.linkedin.com/in/mgael",
@@ -33,10 +33,10 @@ export const me: Me = {
     {
       id: 1,
       number: 0,
-      unit: "months",
-      title: "fullstack developer",
+      unit: "mois",
+      title: "développeur fullstack",
       description:
-        "Startup experience as a solo developer, responsabilities and autonomy.",
+        "Expérience en startup en tant que développeur solo, responsabilités et autonomie.",
       company: "Agoragom",
       location: "Montpellier, France",
       url: "https://agoragom.com",
@@ -44,9 +44,10 @@ export const me: Me = {
     {
       id: 2,
       number: 6,
-      unit: "months",
-      title: "fullstack developer",
-      description: "First company experience as a developer, in an agile team.",
+      unit: "mois",
+      title: "développeur fullstack",
+      description:
+        "Première expérience en entreprise en tant que développeur, dans une équipe agile.",
       company: "Pack Solutions",
       location: "Avignon, France",
       url: "https://www.pack-solutions.com/",
@@ -54,17 +55,17 @@ export const me: Me = {
     {
       id: 3,
       number: 3.5,
-      unit: "years",
-      title: "software engineer student",
+      unit: "années",
+      title: "étudiant ingénieur logiciel",
       description:
-        "Concrete projects with real clients, more practical than theoretical.",
+        "Projets concrets avec de vrais clients, plus pratiques que théoriques.",
       company: "ESIEA",
       location: "Agen, France",
       url: "https://www.esiea.fr/",
       trophies: [
         {
           id: 1,
-          title: "Bachelor's degree",
+          title: "Licence",
           year: 2023,
           emoji: "🎓",
         },
