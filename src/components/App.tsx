@@ -32,7 +32,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/mgael-portfolio"
+          path="/mgael-portfolio/"
           element={
             <Home
               fakeLoading={fakeLoading}
@@ -42,7 +42,7 @@ const App = () => {
           }
         />
 
-        <Route path="/portfolio">
+        <Route path="/mgael-portfolio/portfolio">
           <Route
             path="agostore"
             element={
@@ -68,12 +68,7 @@ const App = () => {
                 />
               </>
             }
-          >
-            <Route path="stealthy" Component={Stealthy} />
-            <Route path="whosthat" Component={WhosThat} />
-            <Route path="misc" Component={Misc} />
-          </Route>
-          <Route path="mage" Component={Mage} />
+          ></Route>
         </Route>
         <Route path="*" Component={() => <div>404</div>} />
       </Routes>

@@ -14,7 +14,7 @@ export const portofolioList: Portofolio[] = [
   {
     id: 1,
     name: "Agostore",
-    link: "/portfolio/agostore",
+    link: "/mgael-portfolio/portfolio/agostore",
     image: Agostore,
   },
   {
