@@ -4,6 +4,7 @@
   font-family: "Inter", sans-serif !important;
   background-size: cover;
   animation: fadeIn 1s ease-in-out;
+  background-color: white;
 }
 
 .research button:focus {
@@ -26,7 +27,8 @@ button:active,
 }
 
 .card {
-  margin: 1.5rem 0 5rem 0;
+  padding: 1.5rem 0 5rem 0;
+  background-color: white;
 }
 
 .card > h3 {

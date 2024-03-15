@@ -136,9 +136,7 @@ const Research = ({
       >
         <div className="top" role="button" onClick={handleTopDivClick}>
           <img src={AgostoreLogo} alt="agostore" />
-          <h1 style={minimized ? { color: "var(--primary-text-color)" } : {}}>
-            AGOSTORE
-          </h1>
+          <h1 style={minimized ? { color: "#333333" } : {}}>AGOSTORE</h1>
         </div>
         <div className="middle">
           <form>
