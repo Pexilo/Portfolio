@@ -394,7 +394,7 @@ button:active,
 }
 
 @media (max-width: 490px) {
-  img {
+  .agostore-bg img {
     display: none;
   }
 
