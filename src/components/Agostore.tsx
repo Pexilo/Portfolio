@@ -1,3 +1,4 @@
+import React from "react";
 import AgostoreBg from "@assets/agostore/agostore_bg.png";
 import AgostoreLogo from "@assets/agostore/agostore_logo.png";
 import DeliverySVG from "@assets/agostore/delivery.svg";

@@ -1,3 +1,4 @@
+import React from "react";
 import { logoList } from "@data/logo.data";
 import { me } from "@data/me.data";
 import { portofolioList } from "@data/portfolio.data";

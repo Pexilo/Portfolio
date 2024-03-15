@@ -4,7 +4,7 @@ import Home from "@components/Home";
 import Mage from "@components/Mage";
 import Misc from "@components/Misc";
 import WhosThat from "@components/WhosThat";
-import { useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GoBackHeader from "./GoBackHeader";
 import Stealthy from "./Stealthy";

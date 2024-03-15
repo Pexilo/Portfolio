@@ -1,3 +1,5 @@
+import React from "react";
+
 const Misc = () => {
   return (
     <div className="misc">
