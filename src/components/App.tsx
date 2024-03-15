@@ -32,7 +32,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/mgael-portfolio"
+          path="/"
           element={
             <Home
               fakeLoading={fakeLoading}
