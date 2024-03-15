@@ -6,6 +6,7 @@ import Misc from "@components/Misc";
 import WhosThat from "@components/WhosThat";
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import GoBackHeader from "./GoBackHeader";
 import Stealthy from "./Stealthy";
 
 const App = () => {
@@ -45,21 +46,27 @@ const App = () => {
           <Route
             path="agostore"
             element={
-              <Agostore
-                fadeEffect={fadeEffect}
-                fakeLoading={fakeLoading}
-                loading={loading}
-              />
+              <>
+                <GoBackHeader />
+                <Agostore
+                  fadeEffect={fadeEffect}
+                  fakeLoading={fakeLoading}
+                  loading={loading}
+                />
+              </>
             }
           />
           <Route
             path="discord"
             element={
-              <Discord
-                fadeEffect={fadeEffect}
-                fakeLoading={fakeLoading}
-                loading={loading}
-              />
+              <>
+                <GoBackHeader />
+                <Discord
+                  fadeEffect={fadeEffect}
+                  fakeLoading={fakeLoading}
+                  loading={loading}
+                />
+              </>
             }
           >
             <Route path="stealthy" Component={Stealthy} />

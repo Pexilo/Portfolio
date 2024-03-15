@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { SquareLoader } from "react-spinners";
 import { Tooltip } from "react-tooltip";
+import MonCV from "src/assets/CV_Gael-MASSART.pdf";
 import ProfilePic from "src/assets/gael-massart.png";
 import "src/styles/home.css";
 import { stringCapitalize } from "src/utils/functions";
@@ -87,7 +88,7 @@ const Home = ({
         <div
           className="hero-pic"
           data-tooltip-id="profile_pic"
-          data-tooltip-content="That's me!👋"
+          data-tooltip-content="Salut ! 👋"
         >
           <div className="inner-circle"></div>
           <img src={ProfilePic} alt={me.name} />
@@ -143,11 +144,11 @@ const Home = ({
         ))}
       </section>
       <section className="cta">
-        <a href="assets/example-cv.pdf" download>
-          <button className="btn download-btn">Download CV</button>
+        <a href={MonCV} target="_blank" rel="noopener noreferrer">
+          <button className="btn download-btn">Mon CV</button>
         </a>
-        <a href="mailto:abc@gmail.com">
-          <button className="btn contact-btn">Contact Me</button>
+        <a href="https://linktr.ee/mgael" target="_blank">
+          <button className="btn contact-btn">Contact</button>
         </a>
       </section>
       <section className="portfolio-skills">
@@ -162,7 +163,7 @@ const Home = ({
             className={`btn-2 ${activeTab === "skills" ? "active-btn" : ""}`}
             onClick={() => setActiveTab("skills")}
           >
-            Skills
+            Compétences
           </button>
         </div>
       </section>
@@ -171,8 +172,17 @@ const Home = ({
         <section className="portfolio" id="portfolio">
           {portofolioList.map((project) => (
             <div key={project.id} className="wrapper project-wrapper">
-              <Link to={project.link}>
-                <img src={project.image} alt={project.name} />
+              <Link to={project.link ?? ""}>
+                <div className="project-info">
+                  <img src={project.image} alt={project.name} />
+                  {project.frontImage && (
+                    <img
+                      className="front-image"
+                      src={project.frontImage}
+                      alt={project.name}
+                    />
+                  )}
+                </div>
               </Link>
             </div>
           ))}
@@ -191,9 +201,9 @@ const Home = ({
                       className="skill-item"
                       key={skill.id}
                       data-tooltip-id={`skill_${skill.id}`}
-                      data-tooltip-content={`First used in ${skill.firstUse}`}
+                      data-tooltip-content={`Première utilisation en ${skill.firstUse}`}
                     >
-                      {skill.emoji} {skill.name}{" "}
+                      {skill.emoji} {skill.name} {skill.favorite && "❤️"}
                       <span className="skill-stars">
                         {"⭐".repeat(skill.estimatedLevel)}
                       </span>

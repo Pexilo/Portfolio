@@ -32,7 +32,7 @@ export const me: Me = {
   experiences: [
     {
       id: 1,
-      number: 0,
+      number: 6,
       unit: "mois",
       title: "développeur fullstack",
       description:

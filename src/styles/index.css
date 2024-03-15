@@ -1,3 +1,7 @@
+* {
+  animation: fadeIn 1s ease-in-out;
+}
+
 @keyframes fadeInOutline {
   from {
     box-shadow: 0 0 0 0 rgba(66, 153, 225, 0);
@@ -53,6 +57,7 @@
 body {
   margin: 0;
   transition: background-color 0.3s ease;
+  background-color: var(--primary-bg-color);
 }
 
 code {
@@ -113,31 +118,6 @@ code {
   /* Tooltip */
   --rt-color-white: var(--dark-rt-color-white) !important;
   --rt-color-dark: var(--dark-rt-color-dark) !important;
-}
-
-.go-to-top {
-  position: fixed;
-  bottom: 1rem;
-  left: 1rem;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  background-color: var(--agostore-color);
-  color: white;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  z-index: 100;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.083);
-  border: none;
-}
-
-.go-to-top:hover {
-  background-color: #ff8f2d;
-  transition: 0.3s;
-  transform: scale(1.1) rotate(360deg);
 }
 
 .loader-container {
