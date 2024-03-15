@@ -1,7 +1,6 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
 import "@styles/extras.css";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const GoBackHeader = () => {
   let navigate = useNavigate();

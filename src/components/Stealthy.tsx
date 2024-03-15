@@ -1,5 +1,3 @@
-import React from "react";
-
 const Stealthy = () => {
   return (
     <div className="stealthy">

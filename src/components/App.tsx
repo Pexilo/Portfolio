@@ -1,13 +1,10 @@
 import Agostore from "@components/Agostore";
 import Discord from "@components/Discord";
 import Home from "@components/Home";
-import Mage from "@components/Mage";
-import Misc from "@components/Misc";
-import WhosThat from "@components/WhosThat";
-import React, { useState } from "react";
+import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GoBackHeader from "./GoBackHeader";
-import Stealthy from "./Stealthy";
+import NotFound from "./NotFound";
 
 const App = () => {
   const [fadeEffect, setFadeEffect] = useState("");
@@ -70,7 +67,7 @@ const App = () => {
             }
           ></Route>
         </Route>
-        <Route path="*" Component={() => <div>404</div>} />
+        <Route path="*" Component={NotFound} />
       </Routes>
     </BrowserRouter>
   );

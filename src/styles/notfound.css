@@ -1,0 +1,73 @@
+@keyframes headStripeAnimation {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(1deg);
+  }
+}
+
+@keyframes spacemanAnimation {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.5px) rotate(1deg);
+  }
+}
+
+@keyframes planetAnimation {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(-2deg);
+  }
+}
+
+@keyframes glassShineAnimation {
+  0% {
+    transform: translateX(-68px) rotate(0);
+  }
+  50% {
+    transform: translateX(80px) rotate(-30deg);
+  }
+  100% {
+    transform: translateX(-68px) rotate(0);
+  }
+}
+
+#headStripe {
+  animation: headStripeAnimation 7s ease-in-out infinite;
+}
+#spaceman {
+  animation: spacemanAnimation 5s ease-in-out infinite;
+}
+#planet {
+  animation: planetAnimation 10s ease-in-out infinite;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  font-family: "Inter", sans-serif;
+}
+
+.astronaut-container {
+  flex: 1;
+  max-width: 800px;
+  position: relative;
+}
+
+.text-container {
+  flex: 1;
+  text-align: left;
+  padding: 0 20px;
+}

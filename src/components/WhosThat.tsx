@@ -1,5 +1,3 @@
-import React from "react";
-
 const WhosThat = () => {
   return (
     <div className="whosthat">

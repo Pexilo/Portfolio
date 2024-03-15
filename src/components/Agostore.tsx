@@ -1,4 +1,3 @@
-import React from "react";
 import AgostoreBg from "@assets/agostore/agostore_bg.png";
 import AgostoreLogo from "@assets/agostore/agostore_logo.png";
 import DeliverySVG from "@assets/agostore/delivery.svg";
@@ -7,7 +6,7 @@ import PriceSVG from "@assets/agostore/price.svg";
 import StockSVG from "@assets/agostore/stock.svg";
 import { Tire, tires } from "@data/agostore.data";
 import "@styles/agostore.css";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SquareLoader } from "react-spinners";
 import { simulateTyping, useDocumentTitle } from "src/utils/functions";
 import ScrollToTopButton from "./ScrollToTopButton";

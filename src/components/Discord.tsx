@@ -1,4 +1,3 @@
-import React from "react";
 import { Channel, portfolioUser, server } from "@data/discord.data";
 import "@styles/discord.css";
 import { useEffect, useRef, useState } from "react";
