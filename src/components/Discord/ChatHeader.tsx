@@ -7,7 +7,6 @@ import SearchIcon from "@assets/discord/search.svg";
 import ThreadIcon from "@assets/discord/thread.svg";
 import UnreadMessagesIcon from "@assets/discord/unread-messages.svg";
 import { Message } from "@data/discord.data";
-import { useState } from "react";
 import { Tooltip } from "react-tooltip";
 import { formattedTime } from "src/utils/functions";
 
@@ -22,8 +21,6 @@ const ChatHeader = ({
   toggleMembers: boolean;
   setToggleMembers: (toggleMembers: boolean) => void;
 }>) => {
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-
   const firstUnreadMessage = parseInt(messages[0].timestamp);
   const unreadMessagesDate = formattedTime(firstUnreadMessage);
 
@@ -74,8 +71,6 @@ const ChatHeader = ({
               className="search-input"
               placeholder="Search"
               onKeyDown={(e) => e.preventDefault()}
-              onFocus={() => setIsSearchOpen(true)}
-              onBlur={() => setIsSearchOpen(false)}
             />
             <img className="search-icon" src={SearchIcon} alt="Search" />
           </div>
