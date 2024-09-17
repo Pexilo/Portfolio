@@ -20,18 +20,19 @@ const GoBackHeader = () => {
   }, []);
 
   return (
-    isLoaded && (
-      <div className="go-back-header fade-in">
-        <button
-          className="go-back-button"
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
-          ◄ Retour
-        </button>
-      </div>
-    )
+    <></>
+    // isLoaded && (
+    //   <div className="go-back-header fade-in">
+    //     <button
+    //       className="go-back-button"
+    //       onClick={() => {
+    //         navigate(-1);
+    //       }}
+    //     >
+    //       ◄ Retour
+    //     </button>
+    //   </div>
+    // )
   );
 };
 
