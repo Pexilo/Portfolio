@@ -1,23 +1,23 @@
 import "@styles/extras.css";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useEffect, useState } from "react";
+// import { useNavigate } from "react-router-dom";
 
 const GoBackHeader = () => {
-  let navigate = useNavigate();
-  const [isLoaded, setIsLoaded] = useState(false);
+  // let navigate = useNavigate();
+  // const [isLoaded, setIsLoaded] = useState(false);
 
-  const deferLoading = () => {
-    return new Promise<void>((resolve) => {
-      setTimeout(() => {
-        setIsLoaded(true);
-        resolve();
-      }, 1500);
-    });
-  };
+  // const deferLoading = () => {
+  //   return new Promise<void>((resolve) => {
+  //     setTimeout(() => {
+  //       setIsLoaded(true);
+  //       resolve();
+  //     }, 1500);
+  //   });
+  // };
 
-  useEffect(() => {
-    deferLoading();
-  }, []);
+  // useEffect(() => {
+  //   deferLoading();
+  // }, []);
 
   return (
     <></>
